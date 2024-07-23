@@ -19,14 +19,6 @@ export const radioBase = style(
     marginRight: '10px',
     cursor: 'pointer',
     $nest: {
-      '&:hover input:not(:disabled):not(:focus)': {
-        backgroundColor: darkBlue,
-        borderColor: darkBlue,
-      },
-      '&:hover input:not(:disabled):not(:checked):not(:focus)': {
-        backgroundColor: white,
-        borderColor: darkBlue,
-      },
       '& input:disabled + div > div': {
         color: gray,
         cursor: 'not-allowed',
@@ -35,20 +27,30 @@ export const radioBase = style(
   }
 );
 
-export const radioLabel = style({
-  marginLeft: '5px',
-  marginTop: '2px',
-  display: 'flex',
-  alignItems: 'center',
-});
+const baseTextStyles = {
+  fontFamily: 'Roboto, sans-serif',
+  fontSize: '14px',
+};
 
-export const radioDescription = style({
-  marginLeft: '5px',
-  fontSize: '12px',
-  color: darkGray,
-  display: 'flex',
-  alignItems: 'center',
-});
+export const radioLabel = style(
+  baseTextStyles,
+  {
+    marginLeft: '5px',
+    marginTop: '3px',
+    display: 'flex',
+    alignItems: 'center',
+  });
+
+export const radioDescription = style(
+  baseTextStyles,
+  {
+    marginLeft: '5px',
+    fontSize: '12px', 
+    color: darkGray,
+    display: 'flex',
+    alignItems: 'center',
+  }
+);
 
 export const radioInput = style({
   appearance: 'none',
@@ -78,6 +80,9 @@ export const radioInput = style({
       borderColor: lightGray,
       cursor: 'not-allowed',
     },
+    '&:disabled:checked::before': {
+      backgroundColor: darkGray,
+    },
     '&:focus': {
       borderColor: gray,
       boxShadow: `0 0 0 2px ${white}, 0 0 0 5px ${lightBlue}`,
@@ -85,6 +90,14 @@ export const radioInput = style({
     '&:checked:focus': {
       borderColor: blue,
       boxShadow: `0 0 0 2px ${white}, 0 0 0 5px ${lightBlue}`,
+    },
+    '&:hover:not(:disabled):not(:checked):not(:focus)': {
+      backgroundColor: white,
+      borderColor: darkBlue,
+    },
+    '&:hover:not(:disabled):not(:focus)': {
+      backgroundColor: darkBlue,
+      borderColor: darkBlue,
     },
   },
 });
@@ -100,7 +113,16 @@ export const errorRadioInput = style({
       borderColor: red,
       boxShadow: `0 0 0 2px ${white}, 0 0 0 5px ${lightRed}`,
     },
-    '&:hover:not(:checked):not(:focus)': {
+    '&:checked:focus': {
+      borderColor: red,
+      boxShadow: `0 0 0 2px ${white}, 0 0 0 5px ${lightRed}`,
+    },
+    '&:hover:not(:disabled):not(:checked):not(:focus)': {
+      backgroundColor: white,
+      borderColor: darkRed,
+    },
+    '&:hover:not(:disabled):not(:focus)': {
+      backgroundColor: darkRed,
       borderColor: darkRed,
     },
   },

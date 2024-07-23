@@ -10,16 +10,21 @@ import {
 export interface RadioButtonProps {
   checked?: boolean;
   label: string;
+  showLabel?: boolean;
   description?: string;
+  showDescription?: boolean;
   disabled?: boolean;
   error?: boolean;
+  required?: boolean;
   onChange: () => void;
 }
 
 const RadioButton: React.FC<RadioButtonProps> = ({
   checked = false,
   label,
+  showLabel = true,
   description,
+  showDescription = true,
   disabled = false,
   error = false,
   onChange,
@@ -34,15 +39,17 @@ const RadioButton: React.FC<RadioButtonProps> = ({
         checked={checked}
         disabled={disabled}
         className={`${radioInput} ${error ? errorRadioInput : ''}`}
-        onChange={() => {}}
+        onChange={onChange}
       />
       <div>
-        <div className={radioLabel}>
-          {label}
-        </div>
-        {description && (
-          <div className={`${radioDescription}`}>
-            {description}
+        {showLabel && (
+          <div className={radioLabel}>
+            {label}
+          </div>
+        )}
+        {showDescription && description && (
+          <div className={radioDescription}>
+            {description || ""}
           </div>
         )}
       </div>

@@ -10,7 +10,9 @@ const Template: StoryFn<RadioButtonProps> = (args) => <RadioButton {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'Label',
+  label: 'Radio label',
+  showDescription: true,
+  showLabel: true,
   description: '',
   checked: false,
   disabled: false,
